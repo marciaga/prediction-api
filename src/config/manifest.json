@@ -1,0 +1,40 @@
+{
+    "server": {
+
+    },
+    "connections": [
+        {
+            "port": 3000,
+            "labels": ["web"]
+        }
+    ],
+    "registrations": [
+        {
+            "plugin": {
+                "register": "good",
+                "options": {
+                    "ops": false,
+                    "reporters": {
+                        "console": [{
+                            "module": "good-console"
+                        }, "stdout"]
+                    }
+                }
+            }
+        },
+        {
+            "plugin": {
+                "register": "hapi-mongodb",
+                "options": {
+                    "url": "mongodb://localhost:27017/prediction-test",
+                    "settings": {
+                        "db": {
+                            "native_parser": false
+                        }
+                    }
+                }
+            }
+        },
+        { "plugin": "./modules/prediction-results" }
+    ]
+}
