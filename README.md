@@ -9,11 +9,12 @@ Install the dependencies:
 Run your local MongoDB server:
 
 Run the Hapi server:
-
 ```
 > $ npm run start
 ```
+ ```
+/api/v1/predictions // returns most recent result from all sources
+/api/v1/predictions?limit=n // returns n results from all sources
+/api/v1/predictions?limit=n&source=five-thirty-eight // returns n results from one source
 
-* Works with Node 4+
-* Server logging implemented with Good/Good console
-* Babel 6 installed, so go nuts
+ ```

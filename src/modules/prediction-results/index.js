@@ -32,10 +32,10 @@ exports.register = function(server, options, next) {
                     // if limit is passed in as query param, it must be type cast to an int
                     options.limit = options.limit ? parseInt(options.limit) : 1;
                     // response is an array of all the sources as strings
+                    response = options.source ? [options.source] : response;
+                    // remove source from options object
+                    delete options.source;
                     // construct an array of queries (queries return promises)
-
-                    // TODO enable source if provided
-
                     let queries = response.map((s) => predictions.find({ source: s }, options).toArray());
                     // when promises resolve
                     Promise.all(queries)

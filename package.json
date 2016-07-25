@@ -9,7 +9,7 @@
   "main": "start.js",
   "scripts": {
     "test": "ava --verbose",
-    "dev": "nodemon -e js,jsx,json --watch src --ignore test --harmony start.js",
+    "dev": "nodemon -e js,json --watch src --ignore test --harmony start.js",
     "start": "node start.js"
   },
   "author": "Arciaga",
