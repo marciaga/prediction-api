@@ -9,8 +9,8 @@
   "main": "start.js",
   "scripts": {
     "test": "ava --verbose",
-    "dev": "nodemon -e js,json --watch src --ignore test --harmony start.js",
-    "start": "node start.js"
+    "dev": "nodemon -e js --watch src --ignore test --harmony start.js",
+    "start": "NODE_ENV=production node start.js"
   },
   "author": "Arciaga",
   "license": "MIT",
