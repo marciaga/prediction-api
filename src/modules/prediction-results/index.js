@@ -1,5 +1,4 @@
 import Boom from 'boom';
-import uuid from 'node-uuid';
 
 const paramsWhitelist = ['limit', 'source'];
 // exports.register registers the plugin with Hapi
@@ -19,8 +18,9 @@ exports.register = function(server, options, next) {
             // if there are query params, ensure they're whitelisted
             if (queryParamsKeys.length > 0) {
                 let found = queryParamsKeys.find((p, i) => {
-                    return p !== paramsWhitelist[i];
+                    return paramsWhitelist.indexOf(p) === -1;
                 });
+
                 if (found) {
                     return reply(Boom.forbidden('Query params not allowed'));
                 }
@@ -29,8 +29,13 @@ exports.register = function(server, options, next) {
             // if there are no query params, we query all sources for the latest results from each
             predictions.distinct('source')
                 .then((response) => {
-                    // if limit is passed in as query param, it must be type cast to an int
-                    options.limit = options.limit ? parseInt(options.limit) : 1;
+                    // if limit is passed in as query param, try to type cast to an int
+                    let limit = options.limit ? parseInt(options.limit) : 1;
+
+                    if (Number.isNaN(limit) || limit === 0) {
+                        return reply(Boom.forbidden('Limit must be a number'));
+                    }
+                    options.limit = limit;
                     // response is an array of all the sources as strings
                     response = options.source ? [options.source] : response;
                     // remove source from options object
