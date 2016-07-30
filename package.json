@@ -22,8 +22,7 @@
     "good-console": "^6.1.2",
     "hapi": "^13.4.1",
     "hapi-mongodb": "^6.0.0",
-    "mongojs": "^2.4.0",
-    "node-uuid": "^1.4.7"
+    "mongojs": "^2.4.0"
   },
   "devDependencies": {
     "ava": "^0.15.2",
@@ -33,11 +32,10 @@
   },
   "ava": {
     "require": [
-      "babel-core/register",
-      "./test"
+      "babel-core/register"
     ],
     "files": [
-      "./src/modules/*/test"
+      "./test/*.spec.js"
     ]
   }
 }
