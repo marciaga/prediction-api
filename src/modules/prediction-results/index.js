@@ -13,7 +13,7 @@ exports.register = function(server, options, next) {
         handler: function(request, reply) {
             let queryParams = request.query;
             let options = {
-                sort: [ 'date', 'desc' ]
+                sort: [[ 'date', 'desc' ]]
             };
             let queryParamsKeys = Object.keys(queryParams);
             // if there are query params, ensure they're whitelisted
