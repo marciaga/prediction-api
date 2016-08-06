@@ -1,3 +1,5 @@
+const url = process.env.DB_CONNECTION;
+export const prodManifest =
 {
     "connections": [
         {
@@ -23,7 +25,7 @@
             "plugin": {
                 "register": "hapi-mongodb",
                 "options": {
-                    "url": "mongodb://localhost:27017/prediction-test",
+                    "url": url,
                     "settings": {
                         "db": {
                             "native_parser": false
@@ -34,4 +36,4 @@
         },
         { "plugin": "./modules/prediction-results" }
     ]
-}
+};

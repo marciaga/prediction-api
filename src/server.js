@@ -4,8 +4,9 @@ require('babel-core/register');
 
 const path = require('path');
 const Glue = require('glue');
-const manifest = require('./config/manifest.json');
 const options = { relativeTo: __dirname };
+
+const manifest = process.env.NODE_ENV === 'production' ? require('./config/manifest.production.js') : require('./config/manifest.json');
 
 Glue.compose(manifest, options, (err, server) => {
     server.start((err) => {
