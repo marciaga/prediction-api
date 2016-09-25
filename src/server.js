@@ -15,7 +15,14 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 Glue.compose(manifest, options, (err, server) => {
+    if (err) {
+        throw err;
+    }
+
     server.start((err) => {
+        if (err) {
+            throw err;
+        }
         console.log('Server running at:', server.info.uri);
     });
 });

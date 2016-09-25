@@ -1,7 +1,7 @@
 import Boom from 'boom';
 
 const paramsWhitelist = ['limit', 'source'];
-// exports.register registers the plugin with Hapi
+
 exports.register = function(server, options, next) {
     const db = server.plugins['hapi-mongodb'].db
     const predictions = db.collection('predictionInfo');
